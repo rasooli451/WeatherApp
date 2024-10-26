@@ -1,0 +1,115 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+
+
+.main{
+    height: 100vh;
+    width: 100%;
+    background-image: url(Background.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8rem;
+}
+
+
+
+.wthrcont{
+    width: 40%;
+    border-radius: 10px;
+    background-color: #0000002a;
+    color: #fff;
+    outline: none;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wthrcont h1{
+    text-align: center;
+}
+
+
+.wthrcont form{
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+
+.wthrcont input[type="text"]{
+    height: 30px;
+    border-radius: 13px;
+    border: none;
+    outline: none;
+    width: 60%;
+    padding: 10px;
+}
+
+
+
+
+
+
+
+
+form button{
+    padding: 10px 25px;
+    background-color: #00000080;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+form button:hover{
+    background: transparent;
+}
+
+
+
+.wthr{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.wthrcont section .outer{
+    width: 60px;
+    border-radius: 15px;
+    height: 100%;
+    background-color: #2a2525cf;
+    position: relative;
+    cursor: pointer;
+}
+
+
+.wthrcont section .inner{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #a924248b;
+    position: absolute;
+    display: flex;
+    left: 3px;
+    top: 3px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s linear;
+}
