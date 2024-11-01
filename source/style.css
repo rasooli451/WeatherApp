@@ -9,6 +9,15 @@
 
 
 
+
+
+@font-face {
+    font-family: spacegrotesk;
+    src: url(./spacegrotesk.ttf);
+}
+
+
+
 .main{
     height: 100vh;
     width: 100%;
@@ -112,4 +121,76 @@ form button:hover{
     justify-content: center;
     align-items: center;
     transition: all 0.3s linear;
+}
+
+
+
+.wthrtoday{
+    padding: 15px;
+    display: flex;
+    width: 95%;
+    border-radius: 12px;
+    flex-direction: column;
+    margin: 1rem auto;
+}
+
+
+.Cityname{
+    padding: 15px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 25px;
+    font-family: spacegrotesk, sans-serif;
+}
+
+.wthrholder{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+
+
+.infoholder{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+
+.infoholder .section{
+    display: flex;
+}
+
+
+.section img{
+    width: 30px;
+    height: 30px;
+}
+
+
+.imageholder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.imageholder img{
+    width: 200px;
+    height: 200px;
+}
+
+.imageholder p{
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+
+.sectionholder{
+    display: flex;
 }
