@@ -2,10 +2,7 @@
 
 import "./style.css";
 
-import sunny from "./sunny.png";
-import rainy from "./rainy.png";
-import cloudy from "./cloudy.png";
-import snowy from "./snowy.png";
+
 import City from "./city";
 import design from "./design";
 
@@ -21,8 +18,19 @@ let inner = document.querySelector(".inner");
 let button = document.querySelector("form button");
 let cityname = document.querySelector("form input[type='text']");
 let currmode = "C";
+let wthrtoday = document.querySelector(".wthrtoday");
+let wthrhourly = document.querySelector(".wthrhourly");
+let wthrweekly = document.querySelector(".wthrweekly");
 
-
+const d = new Date();
+const localTime = d.getTime();
+const localOffset = d.getTimezoneOffset() * 60000;
+console.log(localOffset);
+const utc = localTime + localOffset;
+const offset = 4.5; // UTC of USA Eastern Time Zone is -05.00
+const usa = utc + (3600000 * offset);
+const usaTimeNow = new Date(usa).toLocaleString();
+console.log(usaTimeNow);
 
 button.addEventListener("click", (event)=>{
     event.preventDefault();
@@ -31,12 +39,15 @@ button.addEventListener("click", (event)=>{
     }).then(function(response){
         return response.json();
     }).then(function(response){
-        currCity = new City(response.resolvedAddress, (currmode === "C" ? (String((response.currentConditions.temp - 32) * 5) / 9).toFixed(2) : response.currentConditions.temp) , response.currentConditions.icon, response.currentConditions.humidity, response.currentConditions.windspeed, response.currentConditions.datetime);
+        currCity = new City(response.resolvedAddress, (currmode === "C" ? (String((response.currentConditions.temp - 32) * 5) / 9).toFixed(2) : response.currentConditions.temp) , response.currentConditions.icon, response.currentConditions.humidity, response.currentConditions.windspeed, response.currentConditions.datetime, (response.currentConditions.tzoffset === undefined ? response.tzoffset : response.currentConditions.tzoffset));
         console.log(response);
         let hours = response.days[0].hours;
         fill("hourly", hours);
         let days = response.days.slice(1, 8);
         fill("weekly", days);
+        wthrtoday.innerHTML = "";
+        wthrhourly.innerHTML = "";
+        wthrweekly.innerHTML = "";
         design(currCity, true);
     }).catch(function(error){
         console.log(error);
