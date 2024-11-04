@@ -19,13 +19,12 @@
 
 
 .main{
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     background-image: url(Background.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    border: 2px solid blue;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -88,7 +87,8 @@ form button{
 
 
 form button:hover{
-    background: transparent;
+    background: #fff;
+    color: #000;
 }
 
 
@@ -134,13 +134,19 @@ form button:hover{
     margin: 1rem auto;
 }
 
+.nameanddate{
+    text-align: center;
+    font-weight: 600;
+    font-family: spacegrotesk, sans-serif;
+}
 
 .Cityname{
     padding: 15px;
-    text-align: center;
-    font-weight: 900;
     font-size: 25px;
-    font-family: spacegrotesk, sans-serif;
+}
+
+.nameanddate:nth-child(2){
+    font-size: 23px;
 }
 
 .wthrholder{
@@ -166,9 +172,9 @@ form button:hover{
 }
 
 
-.section img{
-    width: 30px;
-    height: 30px;
+.infoholder .section img{
+    width: 25px;
+    height: 25px;
 }
 
 
@@ -176,7 +182,6 @@ form button:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
 }
 
 
@@ -185,12 +190,92 @@ form button:hover{
     height: 200px;
 }
 
-.imageholder p{
-    font-size: 1.3em;
-    font-weight: 700;
-}
+
 
 
 .sectionholder{
     display: flex;
+    gap: 20px;
+}
+
+
+
+.wthrhourly, .wthrweekly{
+    padding: 15px;
+    width: 95%;
+    text-align: left;
+    font-size: 20px;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+
+.cardholder{
+    display: flex;
+    overflow-x: scroll;
+    gap: 15px;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.cardholder .card, .cardholder.imgholder{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.card{
+    background-color: #2a272798;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.cardholder .imgholder{
+    align-items: center;
+}
+
+.imgholder img{
+    width: 50px;
+    height: 50px;
+}
+
+
+.cardholder .sectionholderforcard{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.sectionholderforcard .section{
+    display: flex;
+}
+
+.sectionholderforcard .section img{
+    width: 20px;
+    height: 20px;
+}
+
+.wthrweekly{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.weeklydataholder{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.weeklydataholder .card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.weeklydataholder .card .imgholder{
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
