@@ -22,15 +22,7 @@ let wthrtoday = document.querySelector(".wthrtoday");
 let wthrhourly = document.querySelector(".wthrhourly");
 let wthrweekly = document.querySelector(".wthrweekly");
 
-const d = new Date();
-const localTime = d.getTime();
-const localOffset = d.getTimezoneOffset() * 60000;
-console.log(localOffset);
-const utc = localTime + localOffset;
-const offset = 4.5; // UTC of USA Eastern Time Zone is -05.00
-const usa = utc + (3600000 * offset);
-const usaTimeNow = new Date(usa).toLocaleString();
-console.log(usaTimeNow);
+
 
 button.addEventListener("click", (event)=>{
     event.preventDefault();
