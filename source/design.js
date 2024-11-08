@@ -8,14 +8,14 @@ import partlycloudynight from "./partly-cloudy-night.png";
 import humiditypng from "./humidity.png";
 import windspeedpng from "./windspeed.png";
 import clearnight from "./clear-night.png";
-import currmode from "./index.js";
 let wthrcont = document.querySelector(".wthr");
 let wthrtoday = document.querySelector(".wthrtoday");
 
 
 let wthrhourly = document.querySelector(".wthrhourly");
 let wthrweekly = document.querySelector(".wthrweekly");
-let days = ["Sunday" , "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+let weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
 function design(City, success){
     if (success){
@@ -74,6 +74,8 @@ function design(City, success){
 
 export default design;
 
+export {findapropriateIcon};
+
 
 
 
@@ -129,7 +131,7 @@ function toreducerepetion(what, container, humidity, windspeed){
 
 function designhourlyforecast(City){
     let title = document.createElement("p");
-    title.textContent = "Hourly Forecast"
+    title.textContent = "Hourly Forecast";
     title.classList.add("hourlytitle");
     wthrhourly.appendChild(title);
     wthrhourly.style.backgroundColor = "#2a272785";
@@ -158,9 +160,8 @@ function DesignCard(arraydata, container){
     card.classList.add("card");
 
     let time = document.createElement("p");
-    time.textContent = (container.classList.contains("cardholder") ? arraydata.time : arraydata.day +", " + days[new Date(arraydata.day).getDay() + 1]);
+    time.textContent = (container.classList.contains("cardholder") ? arraydata.time : arraydata.day +", " + weekdays[new Date(arraydata.day).getDay()]);
     card.appendChild(time);
-
     let image = document.createElement("img");
     let weatherdata = findapropriateIcon(arraydata.weather);
     image.src = weatherdata[0];
