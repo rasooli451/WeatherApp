@@ -8,7 +8,8 @@ import partlycloudynight from "./partly-cloudy-night.png";
 import humiditypng from "./humidity.png";
 import windspeedpng from "./windspeed.png";
 import clearnight from "./clear-night.png";
-let wthrcont = document.querySelector(".wthr");
+
+
 let wthrtoday = document.querySelector(".wthrtoday");
 
 
@@ -64,7 +65,21 @@ function design(City, success){
         designweeklyforecast(City);
     }
     else{
-
+        let errormsg = document.createElement("p");
+        errormsg.classList.add("errormsg");
+        wthrtoday.style.backgroundColor = "transparent";
+        wthrhourly.style.backgroundColor = "transparent";
+        wthrweekly.style.backgroundColor = "transparent";
+        if (City === 400){    
+            errormsg.textContent = "No Matching Location Found!";
+            wthrtoday.appendChild(errormsg);
+        }
+        else if(City === 429){
+            errormsg.textContent = "Too Many Requests, Try Again Later!";
+        }
+        else{
+            errormsg.textContent = "Error " + City;
+        }
     }
 }
 
