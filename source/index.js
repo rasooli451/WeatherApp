@@ -43,7 +43,6 @@ button.addEventListener("click", (event)=>{
             loadingscreen.className = "loading hidden";
             let currentConditions = response.currentConditions;
             currCity = new City(response.resolvedAddress, (inner.textContent === "°C" ? toCelsius(currentConditions.temp) : currentConditions.temp) , currentConditions.icon, currentConditions.humidity, currentConditions.windspeed, currentConditions.datetime, (currentConditions.tzoffset === undefined ? response.tzoffset : currentConditions.tzoffset));
-            console.log(response);
             let hours = response.days[0].hours;
             fill("hourly", hours);
             let days = response.days.slice(1, 8);
@@ -51,7 +50,6 @@ button.addEventListener("click", (event)=>{
             design(currCity, true);
         }).catch(function(error){
             loadingscreen.className = "loading hidden";
-            console.log(error);
             design(status, false);
         })
         loadingscreen.classList.remove("hidden");
@@ -109,7 +107,6 @@ function ChangeUnit(){
 
 function toFarenheit(temp){
     return (((temp * 9) / 5) + 32).toFixed(2);
-    //return String(((temp * 9)/5) + 32).toFixed(2);
 
 }
 
