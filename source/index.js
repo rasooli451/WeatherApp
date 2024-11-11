@@ -50,6 +50,7 @@ button.addEventListener("click", (event)=>{
             design(currCity, true);
         }).catch(function(error){
             loadingscreen.className = "loading hidden";
+            currCity = null;
             design(status, false);
         })
         loadingscreen.classList.remove("hidden");
