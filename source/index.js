@@ -22,28 +22,40 @@ let wthrtoday = document.querySelector(".wthrtoday");
 let wthrhourly = document.querySelector(".wthrhourly");
 let wthrweekly = document.querySelector(".wthrweekly");
 
+let loadingscreen = document.querySelector(".loading");
+
+let status = 0;
+
 
 
 button.addEventListener("click", (event)=>{
     event.preventDefault();
-    fetch(url + cityname.value + key, {
-        mode : "cors"
-    }).then(function(response){
-        return response.json();
-    }).then(function(response){
-        currCity = new City(response.resolvedAddress, (inner.textContent === "°C" ? (String((response.currentConditions.temp - 32) * 5) / 9).toFixed(2) : response.currentConditions.temp) , response.currentConditions.icon, response.currentConditions.humidity, response.currentConditions.windspeed, response.currentConditions.datetime, (response.currentConditions.tzoffset === undefined ? response.tzoffset : response.currentConditions.tzoffset));
-        console.log(response);
-        let hours = response.days[0].hours;
-        fill("hourly", hours);
-        let days = response.days.slice(1, 8);
-        fill("weekly", days);
-        wthrtoday.innerHTML = "";
-        wthrhourly.innerHTML = "";
-        wthrweekly.innerHTML = "";
-        design(currCity, true);
-    }).catch(function(error){
-        console.log(error);
-    })
+    if (cityname.validity.valid){
+        fetch(url + cityname.value + key, {
+            mode : "cors"
+        }).then(function(response){
+            status = response.status;
+            wthrtoday.innerHTML = "";
+            wthrhourly.innerHTML = "";
+            wthrweekly.innerHTML = "";
+            return response.json();
+        }).then(function(response){
+            loadingscreen.className = "loading hidden";
+            let currentConditions = response.currentConditions;
+            currCity = new City(response.resolvedAddress, (inner.textContent === "°C" ? toCelsius(currentConditions.temp) : currentConditions.temp) , currentConditions.icon, currentConditions.humidity, currentConditions.windspeed, currentConditions.datetime, (currentConditions.tzoffset === undefined ? response.tzoffset : currentConditions.tzoffset));
+            console.log(response);
+            let hours = response.days[0].hours;
+            fill("hourly", hours);
+            let days = response.days.slice(1, 8);
+            fill("weekly", days);
+            design(currCity, true);
+        }).catch(function(error){
+            loadingscreen.className = "loading hidden";
+            console.log(error);
+            design(status, false);
+        })
+        loadingscreen.classList.remove("hidden");
+    }
 })
 
 
@@ -71,10 +83,10 @@ function fill(what, array){
     let length = (what === "hourly" ? array.length : 6);
     for (let i = 0; i < length; i++){
         if (what === "hourly"){
-            currCity.addhourlydata(array[i].datetime, (inner.textContent === "°C" ? (String((array[i].temp - 32) * 5) / 9).toFixed(2) : array[i].temp), array[i].icon, array[i].humidity, array[i].windspeed);
+            currCity.addhourlydata(array[i].datetime, (inner.textContent === "°C" ? toCelsius(array[i].temp) : array[i].temp), array[i].icon, array[i].humidity, array[i].windspeed);
         }
         else{
-            currCity.addweeklydata(array[i].datetime, (inner.textContent === "°C" ? (String((array[i].temp - 32) * 5) / 9).toFixed(2) : array[i].temp), (inner.textContent === "°C" ? (String((array[i].tempmax - 32) * 5) / 9).toFixed(2) : array[i].tempmax), (inner.textContent === "°C" ? (String((array[i].tempmin - 32) * 5) / 9).toFixed(2) : array[i].tempmin), array[i].icon, array[i].humidity, array[i].windspeed);
+            currCity.addweeklydata(array[i].datetime, (inner.textContent === "°C" ? toCelsius(array[i].temp) : array[i].temp), (inner.textContent === "°C" ? toCelsius(array[i].tempmax) : array[i].tempmax), (inner.textContent === "°C" ? toCelsius(array[i].tempmin) : array[i].tempmin), array[i].icon, array[i].humidity, array[i].windspeed);
         }
     }
 }
@@ -84,10 +96,10 @@ function fill(what, array){
 
 function ChangeUnit(){
     if (inner.textContent === "°F"){
-        currCity.temp = toFarenheit(Number(currCity.temp));
+        currCity.temp = toFarenheit((currCity.temp));
     }
     else{
-        currCity.temp = toCelsius(Number(currCity.temp));
+        currCity.temp = toCelsius((currCity.temp));
     }
     UpdateHourly();
     UpdateWeekly();
@@ -98,6 +110,7 @@ function ChangeUnit(){
 function toFarenheit(temp){
     return (((temp * 9) / 5) + 32).toFixed(2);
     //return String(((temp * 9)/5) + 32).toFixed(2);
+
 }
 
 
