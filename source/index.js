@@ -17,7 +17,7 @@ let outer = document.querySelector(".outer");
 let inner = document.querySelector(".inner");
 
 let button = document.querySelector("form button");
-let cityname = document.querySelector("form input[type='text']");
+let cityname = document.querySelector("form input");
 let wthrtoday = document.querySelector(".wthrtoday");
 let wthrhourly = document.querySelector(".wthrhourly");
 let wthrweekly = document.querySelector(".wthrweekly");
