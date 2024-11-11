@@ -60,7 +60,7 @@
 
 
 
-.wthrcont input[type="text"]{
+.wthrcont input{
     height: 30px;
     border-radius: 13px;
     border: none;
