@@ -1,13 +1,13 @@
 
-import sunny from "./clear-day.png";
-import rain from "./rain.png";
-import cloudy from "./cloudy.png";
-import snow from "./snow.png";
-import partlycloudyday from "./partly-cloudy-day.png";
-import partlycloudynight from "./partly-cloudy-night.png";
-import humiditypng from "./humidity.png";
-import windspeedpng from "./windspeed.png";
-import clearnight from "./clear-night.png";
+import sunny from "./assets/clear-day.png";
+import rain from "./assets/rain.png";
+import cloudy from "./assets/cloudy.png";
+import snow from "./assets/snow.png";
+import partlycloudyday from "./assets/partly-cloudy-day.png";
+import partlycloudynight from "./assets/partly-cloudy-night.png";
+import humiditypng from "./assets/humidity.png";
+import windspeedpng from "./assets/windspeed.png";
+import clearnight from "./assets/clear-night.png";
 
 
 let wthrtoday = document.querySelector(".wthrtoday");
